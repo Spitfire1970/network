@@ -6,6 +6,70 @@
         <title>{% block title %}Social Network{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{% static 'network/styles.css' %}" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/49736d64d6.js" crossorigin="anonymous"></script>
+        <script>
+            function fillHeartIcon(event) {
+            const icon = event.target;
+            icon.className = "fa-solid fa-heart fa-xl";
+          }
+        
+          function unfillHeartIcon(event) {
+            const icon = event.target;
+            icon.className = "fa-regular fa-heart fa-lg"; 
+          }
+          function toggleHeartIcon(event) {
+            const icon = event.target;
+            if (event.type === "mouseenter"){
+                if (icon.classList.contains("fa-regular")){
+                    icon.classList.remove("fa-regular", "fa-lg");
+                    icon.classList.add("fa-solid", "fa-xl");
+                }
+                else{
+                    icon.classList.remove("fa-heart")
+                    icon.classList.add("fa-heart-crack")
+                }}
+            if (event.type === "mouseleave"){
+                if (icon.classList.contains("fa-heart-crack")){
+                    icon.classList.remove("fa-heart-crack");
+                    icon.classList.add("fa-heart");
+                }
+                else if (icon.classList.contains("fa-xl")){
+                    icon.classList.remove("fa-solid", "fa-xl");
+                    icon.classList.add("fa-regular", "fa-lg");
+                }}
+            if (event.type === "click"){
+                if (icon.classList.contains("fa-xl")){
+                    icon.classList.remove("fa-regular", "fa-xl");
+                    icon.classList.add("fa-solid", "fa-lg");
+                }
+                else if (icon.classList.contains("fa-heart-crack")){
+                    icon.classList.remove("fa-solid", "fa-heart-crack");
+                    icon.classList.add("fa-heart", "fa-regular");
+                }
+
+          }}
+          function toggleAnimation(event){
+            const icon = event.target;
+            if (icon.classList.contains("fa-regular")) {
+            icon.classList.remove("fa-regular");
+            icon.classList.add("fa-solid");
+            } else if (icon.classList.contains("fa-solid")) {
+            icon.classList.remove("fa-solid");
+            icon.classList.add("fa-regular");
+          }}
+            document.addEventListener('DOMContentLoaded', load);
+        
+            function load() {
+                hmm = document.querySelectorAll(".fa-heart");
+                hmm.forEach(f);
+                function f(i)
+                {
+                    i.addEventListener("mouseenter", toggleHeartIcon);
+                    i.addEventListener("mouseleave", toggleHeartIcon);
+                    i.addEventListener("click", toggleHeartIcon);
+                }    
+            };
+        </script>
     </head>
     <body>
 
